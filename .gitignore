@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+.vscode/
+.idea/
+.env
+venv/
+env/
+node_modules/
+dist/
+build/
+*.bak
+*.tmp
+/to_remove/

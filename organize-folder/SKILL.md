@@ -1,0 +1,64 @@
+---
+name: organize-folder
+description: Automatically organizes cluttered folders by categorizing files, identifying duplicates, and renaming PDF documents like invoices and receipts based on their content. Use when a directory is disorganized or contains a mix of documents, installers, and media.
+---
+
+# Organize Folder
+
+This skill provides a structured workflow for tidying up disorganized directories while ensuring data safety.
+
+## Core Mandates
+
+1. **Safety First**: NEVER delete any file. Move files intended for deletion to a folder named `to_remove`.
+2. **Strict Scoping**: Operate ONLY within the current directory and its subdirectories. Never move or access files in the parent directory (`..`).
+3. **Preservation**: If a file's category is ambiguous, move it to a `Misc/` folder rather than guessing incorrectly.
+4. **Large Files**: For any file larger than 20MB, skip deep content analysis (such as reading PDF text) to prevent memory issues. Simply categorize these large files purely by their file extension.
+5. **Folder Handling**: Recursively process all files within the current directory and its subdirectories. When moving files, place them in the categorized folders at the root level of the target directory (do not replicate the category structure inside every subfolder). Any empty subdirectories discovered or left behind must be moved to `to_remove/`.
+
+## Workflow
+
+### 1. Duplicate Detection
+
+Run the `find_duplicates.py` script to identify identical files.
+
+- **Action**: Move identified duplicates to `to_remove/`.
+- **Logic**: Use file hashes (SHA256) via the script for deterministic results.
+
+### 2. General Categorization
+
+Organize files by extension and common patterns:
+
+- **Photos**: Move to `Photos/`. (Screenshots to `Photos/Screenshots/`)
+- **Videos**: Move to `Videos/`.
+- **Installers**: Move to `Installers/` (`.dmg`, `.pkg`, `.exe`, `.msi`).
+- **Archives**: Move to `Archives/` (`.zip`, `.rar`, etc.).
+
+### 3. Deep PDF Analysis
+
+For PDF files, read the first few pages to determine the document type and extract metadata for renaming.
+
+- **CRITICAL**: Do NOT generate dynamic Python scripts to read PDFs. Instead, execute the `scripts/extract_pdf_metadata.py` script provided in this skill to extract text and analyze the document deterministically.
+- Refer to `references/classification.md` for specific keyword triggers and naming formats.
+- **Invoices**: Rename to `yyyy-mm-dd-[Vendor]-[Inv#]-[Amount].pdf` and move to `Invoices/`.
+- **Bills**: Rename to `yyyy-mm-dd-[Provider]-[Service].pdf` and move to `Bills/`.
+- **Receipts**: Rename to `yyyy-mm-dd-[Store]-[Amount].pdf` and move to `Receipts/`.
+- **Travel**: Move itineraries and tickets to `Travel/`.
+
+### 4. Final Cleanup
+
+- Group remaining documents (`.docx`, `.xlsx`, etc.) into `Documents/` by sub-type if applicable.
+- Move any unhandled files to `Misc/`.
+
+## Resources
+
+### scripts/find_duplicates.py
+
+A Python script that deterministically finds identical files. It uses SHA-256 hashing to compare file contents rather than relying on filenames or sizes, returning a JSON list of duplicates.
+
+### scripts/extract_pdf_metadata.py
+
+A Python helper script that extracts text from the first few pages of a PDF using the modern `pypdf` library. Use this instead of rolling your own script. Returns the text in a JSON wrapper.
+
+### references/classification.md
+
+Contains detailed keyword lists and naming conventions for PDFs and other document types.

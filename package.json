@@ -1,0 +1,11 @@
+{
+  "name": "organise-folder-skill",
+  "version": "0.0.1",
+  "description": "Automatically organizes cluttered folders by categorizing files, identifying duplicates, and renaming PDFs.",
+  "author": "congyuan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/congyuan/organise-folder-skill.git"
+  }
+}
