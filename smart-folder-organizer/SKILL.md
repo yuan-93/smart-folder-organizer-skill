@@ -12,7 +12,7 @@ This skill provides a structured workflow for tidying up disorganized directorie
 1. **Safety First**: NEVER delete any file. Move files intended for deletion to a folder named `to_remove`.
 2. **Strict Scoping**: Operate ONLY within the current directory and its subdirectories. Never move or access files in the parent directory (`..`).
 3. **Preservation**: If a file's category is ambiguous, move it to a `Misc/` folder rather than guessing incorrectly.
-4. **Large Files**: For any file larger than 20MB, skip deep content analysis (such as reading PDF text) to prevent memory issues. Simply categorize these large files purely by their file extension.
+4. **Large Files**: For any file larger than 20MB, skip deep content analysis (such as reading PDF text) to prevent memory issues. Move these unanalyzed large files to a dedicated `Others/LargeFiles/` directory.
 5. **Folder Handling**: Recursively process all files within the current directory and its subdirectories. When moving files, place them in the categorized folders at the root level of the target directory (do not replicate the category structure inside every subfolder). Any empty subdirectories discovered or left behind must be moved to `to_remove/`.
 
 ## Workflow
@@ -45,12 +45,12 @@ Organize files by extension and common patterns:
 
 For PDF files, read the first few pages to determine the document type and extract metadata for renaming.
 
-- **CRITICAL**: Do NOT generate dynamic Python scripts to read PDFs. Instead, execute the `scripts/extract_pdf_metadata.py` script provided in this skill to extract text and analyze the document deterministically.
-- Refer to `references/classification.md` for specific keyword triggers and naming formats.
-- **Invoices**: Rename to `yyyy-mm-dd-[Vendor]-[Inv#]-[Amount].pdf` and move to `Invoices/`.
-- **Bills**: Rename to `yyyy-mm-dd-[Provider]-[Service].pdf` and move to `Bills/`.
-- **Receipts**: Rename to `yyyy-mm-dd-[Store]-[Amount].pdf` and move to `Receipts/`.
-- **Travel**: Move itineraries and tickets to `Travel/`.
+- **CRITICAL**: Do NOT generate dynamic Python scripts to read PDFs. Instead, execute the `scripts/extract_pdf_metadata.py` script provided in this skill to extract text and analyze the document deterministically. The script uses Docling to preserve layout and return high-quality markdown.
+- **IMPORTANT**: Use strong semantic reasoning for document classification rather than strict keyword-matching. Refer to `references/classification.md` for guidelines and characteristics of each document type.
+- **Invoices**: Rename to `yyyy-mm-dd-[Vendor]-[Inv#]-[Amount].pdf` and move to `Documents/Invoices/`.
+- **Bills**: Rename to `yyyy-mm-dd-[Provider]-[Service].pdf` and move to `Documents/Bills/`.
+- **Receipts**: Rename to `yyyy-mm-dd-[Store]-[Amount].pdf` and move to `Documents/Receipts/`.
+- **Travel**: Move itineraries and tickets to `Documents/Travel/`.
 
 ### 5. Final Cleanup
 
@@ -65,7 +65,7 @@ A Python script that deterministically finds identical files. It uses SHA-256 ha
 
 ### scripts/extract_pdf_metadata.py
 
-A Python helper script that extracts text from the first few pages of a PDF using the modern `pypdf` library. Use this instead of rolling your own script. Returns the text in a JSON wrapper.
+A Python helper script that extracts text from a PDF using the modern `docling` library. Use this instead of rolling your own script. It provides document structure and layout-aware extraction, returning the text in a JSON wrapper.
 
 ### scripts/detect_smart_folders.py
 

@@ -21,7 +21,7 @@ npx skills add https://github.com/yuan-93/smart-folder-organizer-skill
 ## Requirements
 
 - Python 3.x
-- `pypdf` (installed automatically via `requirements.txt`)
+- `docling` (installed automatically via `requirements.txt`)
 
 ## Usage
 

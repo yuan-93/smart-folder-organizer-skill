@@ -1,34 +1,30 @@
 """
 Extract PDF Metadata Script
 ---------------------------
-A helper script that extracts text from the first few pages of a PDF
-using the pypdf library. Returns output as a JSON dictionary to stdout.
+A helper script that extracts text from a PDF using the docling library. 
+Docling preserves document layout and tables, returning high-quality markdown.
+Returns output as a JSON dictionary to stdout.
 """
 
 import sys
 import json
 try:
-    from pypdf import PdfReader
+    from docling.document_converter import DocumentConverter
 except ImportError:
-    print(json.dumps({"error": "pypdf is not installed. Please install it using 'pip install pypdf'."}))
+    print(json.dumps({"error": "docling is not installed. Please install it using 'pip install docling'."}))
     sys.exit(0)
 
-def extract_pdf_metadata(file_path, num_pages=2):
+def extract_pdf_metadata(file_path):
     """
-    Reads the first `num_pages` of a PDF and returns the text.
-    Uses pypdf for deterministic and reliable extraction.
+    Reads a PDF and returns the text in markdown format.
+    Uses Docling for structural and layout-aware extraction.
     """
     try:
-        reader = PdfReader(file_path)
+        converter = DocumentConverter()
+        result = converter.convert(file_path)
         
-        extracted_text = []
-        pages_to_read = min(num_pages, len(reader.pages))
-        
-        for i in range(pages_to_read):
-            page = reader.pages[i]
-            extracted_text.append(page.extract_text() or "")
-            
-        full_text = "\n".join(extracted_text).strip()
+        # Docling exports high quality text, typically in markdown format
+        full_text = result.document.export_to_markdown()
         
         return {
             "success": True,

@@ -1,36 +1,50 @@
 # Document Classification Rules
 
-## PDF Metadata Extraction
+## PDF Metadata Extraction & Semantic Classification
 
-When analyzing PDFs, search for the following keywords to categorize and extract details for renaming.
+When analyzing PDF text, **do not rely purely on rigid keyword matching**. Instead, use your semantic understanding of the document's content to determine its fundamental purpose. Use the guidelines below to categorize the document and extract details for renaming.
+
+If a document matches characteristics of multiple categories, consider its primary purpose. For example, a receipt that mentions a "due date" is still a receipt, and a resume referencing "Internet technologies" is a general Document, not an internet bill.
 
 ### Invoices
 
-- **Keywords**: "Invoice", "Tax Invoice", "Bill To", "Invoice Number", "INV-", "Due Date".
+- **Characteristics**: Documents requesting payment for goods/services provided. Usually contains "Bill To", an Invoice Number, and a Due Date.
 - **Naming Format**: `yyyy-mm-dd-[BilledTo]-[VendorName]-[Invoice#]-[Amount].pdf`
-- **Folder**: `Invoices/`
+- **Folder**: `Documents/Invoices/`
 
 ### Bills (Utility/Recurring)
 
-- **Keywords**: "Statement of Account", "Service Period", "Account Number", "Account Name", "Utility Bill", "Electric", "Water", "Internet".
+- **Characteristics**: Recurring statements for services like electricity, water, internet, or phone. Contains service periods and account numbers.
 - **Naming Format**: `yyyy-mm-dd-[Provider]-[AccountName]-[Account#].pdf`
-- **Folder**: `Bills/`
+- **Folder**: `Documents/Bills/`
 
 ### Receipts
 
-- **Keywords**: "Receipt", "Transaction Date", "Order Summary", "Total Paid", "Store #", "Card Ending In", "Paid By".
+- **Characteristics**: Proof of payment for a completed transaction. Usually contains an order summary, total paid, and payment method (e.g., "Card Ending In").
 - **Naming Format**: `yyyy-mm-dd-[PaidBy]-[Store]-[TotalAmount].pdf`
-- **Folder**: `Receipts/`
+- **Folder**: `Documents/Receipts/`
 
 ### Travel Documents
 
-- **Keywords**: "Itinerary", "Flight", "Boarding Pass", "Confirmation Number", "Booking Reference", "Airline", "Hotel Reservation".
-- **Folder**: `Travel/`
+- **Characteristics**: Itineraries, flight bookings, boarding passes, hotel reservations.
+- **Naming Format**: `yyyy-mm-dd-[Airline/Hotel]-[Confirmation#].pdf` (if applicable)
+- **Folder**: `Documents/Travel/`
 
 ### Financial/Legal
 
-- **Bank Statements**: "Bank Statement", "Available Balance", "Checking Account".
-- **Legal**: "Agreement", "Contract", "Terms and Conditions", "Privacy Policy".
+- **Bank Statements**: Monthly account summaries showing available balances and transactions.
+- **Legal**: Agreements, contracts, privacy policies.
+- **Folder**: `Documents/Financial/` or `Documents/Legal/`
+
+### Career & Professional
+
+- **Characteristics**: Resumes, Job applications, CVs, and professional summaries.
+- **Folder**: `Documents/Career/`
+
+### General Documents
+
+- **Characteristics**: General documents that do not fall into the above categories.
+- **Folder**: `Documents/`
 
 ## General File Types
 
