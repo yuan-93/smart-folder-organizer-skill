@@ -15,7 +15,7 @@ Automatically organizes cluttered folders by categorizing files, identifying dup
 You can add this skill to your workspace using the `skills-cli`:
 
 ```bash
-npx skills add https://github.com/congyuan/smart-folder-organizer-skill
+npx skills add https://github.com/yuan-93/smart-folder-organizer-skill
 ```
 
 ## Requirements
