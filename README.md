@@ -1,4 +1,4 @@
-# Organize Folder Skill
+# Smart Folder Organizer Skill
 
 Automatically organizes cluttered folders by categorizing files, identifying duplicates, and renaming PDF documents like invoices and receipts based on their content.
 
@@ -15,7 +15,7 @@ Automatically organizes cluttered folders by categorizing files, identifying dup
 You can add this skill to your workspace using the `skills-cli`:
 
 ```bash
-npx skills add https://github.com/congyuan/organise-folder-skill
+npx skills add https://github.com/congyuan/smart-folder-organizer-skill
 ```
 
 ## Requirements
@@ -41,7 +41,7 @@ You can also run `gemini` in interactive mode and use prompts like:
 - "Categorize the files in the Downloads directory."
 - "Find and remove duplicates in this folder."
 
-The agent will automatically utilize the organize-folder skill to complete your request safely.
+The agent will automatically utilize the smart-folder-organizer skill to complete your request safely.
 
 ## Roadmap
 

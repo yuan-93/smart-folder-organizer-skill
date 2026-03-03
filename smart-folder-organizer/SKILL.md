@@ -1,9 +1,9 @@
 ---
-name: organize-folder
+name: smart-folder-organizer
 description: Automatically organizes cluttered folders by categorizing files, identifying duplicates, and renaming PDF documents like invoices and receipts based on their content. Use when a directory is disorganized or contains a mix of documents, installers, and media.
 ---
 
-# Organize Folder
+# Smart Folder Organizer
 
 This skill provides a structured workflow for tidying up disorganized directories while ensuring data safety.
 
