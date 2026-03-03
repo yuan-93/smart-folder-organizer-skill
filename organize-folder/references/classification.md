@@ -7,19 +7,19 @@ When analyzing PDFs, search for the following keywords to categorize and extract
 ### Invoices
 
 - **Keywords**: "Invoice", "Tax Invoice", "Bill To", "Invoice Number", "INV-", "Due Date".
-- **Naming Format**: `yyyy-mm-dd-[VendorName]-[Invoice#]-[Amount].pdf`
+- **Naming Format**: `yyyy-mm-dd-[BilledTo]-[VendorName]-[Invoice#]-[Amount].pdf`
 - **Folder**: `Invoices/`
 
 ### Bills (Utility/Recurring)
 
-- **Keywords**: "Statement of Account", "Service Period", "Account Number", "Utility Bill", "Electric", "Water", "Internet".
-- **Naming Format**: `yyyy-mm-dd-[Provider]-[ServiceType].pdf`
+- **Keywords**: "Statement of Account", "Service Period", "Account Number", "Account Name", "Utility Bill", "Electric", "Water", "Internet".
+- **Naming Format**: `yyyy-mm-dd-[Provider]-[AccountName]-[Account#].pdf`
 - **Folder**: `Bills/`
 
 ### Receipts
 
-- **Keywords**: "Receipt", "Transaction Date", "Order Summary", "Total Paid", "Store #", "Card Ending In".
-- **Naming Format**: `yyyy-mm-dd-[Store]-[TotalAmount].pdf`
+- **Keywords**: "Receipt", "Transaction Date", "Order Summary", "Total Paid", "Store #", "Card Ending In", "Paid By".
+- **Naming Format**: `yyyy-mm-dd-[PaidBy]-[Store]-[TotalAmount].pdf`
 - **Folder**: `Receipts/`
 
 ### Travel Documents
