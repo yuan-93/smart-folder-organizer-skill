@@ -17,14 +17,22 @@ This skill provides a structured workflow for tidying up disorganized directorie
 
 ## Workflow
 
-### 1. Duplicate Detection
+### 1. Smart Folder Detection
+
+Before processing individual files, run `scripts/detect_smart_folders.py <target_dir>` to identify subdirectories that are already well-organized (e.g., git repositories, software projects, macOS app bundles).
+
+- **Action**: Move each detected folder to `Others/` as a whole — do NOT descend into or reorganize its contents.
+- **Logic**: The script checks for project markers (`.git/`, `package.json`, `Cargo.toml`, `Makefile`, etc.) and app bundles (`.app`), returning a JSON list of matches with reasons.
+- **Skip**: All subsequent steps should ignore the `Others/` directory.
+
+### 2. Duplicate Detection
 
 Run the `find_duplicates.py` script to identify identical files.
 
 - **Action**: Move identified duplicates to `to_remove/`.
 - **Logic**: Use file hashes (SHA256) via the script for deterministic results.
 
-### 2. General Categorization
+### 3. General Categorization
 
 Organize files by extension and common patterns:
 
@@ -33,7 +41,7 @@ Organize files by extension and common patterns:
 - **Installers**: Move to `Installers/` (`.dmg`, `.pkg`, `.exe`, `.msi`).
 - **Archives**: Move to `Archives/` (`.zip`, `.rar`, etc.).
 
-### 3. Deep PDF Analysis
+### 4. Deep PDF Analysis
 
 For PDF files, read the first few pages to determine the document type and extract metadata for renaming.
 
@@ -44,7 +52,7 @@ For PDF files, read the first few pages to determine the document type and extra
 - **Receipts**: Rename to `yyyy-mm-dd-[Store]-[Amount].pdf` and move to `Receipts/`.
 - **Travel**: Move itineraries and tickets to `Travel/`.
 
-### 4. Final Cleanup
+### 5. Final Cleanup
 
 - Group remaining documents (`.docx`, `.xlsx`, etc.) into `Documents/` by sub-type if applicable.
 - Move any unhandled files to `Misc/`.
@@ -58,6 +66,10 @@ A Python script that deterministically finds identical files. It uses SHA-256 ha
 ### scripts/extract_pdf_metadata.py
 
 A Python helper script that extracts text from the first few pages of a PDF using the modern `pypdf` library. Use this instead of rolling your own script. Returns the text in a JSON wrapper.
+
+### scripts/detect_smart_folders.py
+
+A Python script that scans immediate subdirectories of a target folder for project markers (`.git/`, `package.json`, `Cargo.toml`, `Makefile`, etc.) and app bundles (`.app`). Returns a JSON list of detected "smart" folders that should be moved to `Others/` without being broken apart.
 
 ### references/classification.md
 
