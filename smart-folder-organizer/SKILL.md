@@ -54,7 +54,7 @@ For PDF files, read the first few pages to determine the document type and extra
 
 ### 5. Final Cleanup
 
-- Group remaining documents (`.docx`, `.xlsx`, etc.) into `Documents/` by sub-type if applicable.
+- Group remaining documents (`.docx`, `.xlsx`, etc.) into `Documents/Uncategorized/` by sub-type if applicable.
 - Move any unhandled files to `Misc/`.
 
 ## Resources

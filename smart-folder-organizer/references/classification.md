@@ -44,7 +44,7 @@ If a document matches characteristics of multiple categories, consider its prima
 ### General Documents
 
 - **Characteristics**: General documents that do not fall into the above categories.
-- **Folder**: `Documents/`
+- **Folder**: `Documents/Uncategorized/`
 
 ## General File Types
 
