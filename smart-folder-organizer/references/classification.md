@@ -2,43 +2,49 @@
 
 ## PDF Metadata Extraction & Semantic Classification
 
-When analyzing PDF text, **do not rely purely on rigid keyword matching**. Instead, use your semantic understanding of the document's content to determine its fundamental purpose. Use the guidelines below to categorize the document and extract details for renaming.
+When analyzing PDF text, **do not rely purely on rigid keyword matching**. Instead, use **Universal Semantic Reasoning** to determine the document's fundamental purpose. The AI model's native multilingual understanding is the primary tool here.
 
-If a document matches characteristics of multiple categories, consider its primary purpose. For example, a receipt that mentions a "due date" is still a receipt, and a resume referencing "Internet technologies" is a general Document, not an internet bill.
+If a document matches characteristics of multiple categories, consider its primary intent. For example, a receipt that mentions a "due date" is still a receipt, and a resume referencing "Internet technologies" is a general Document, not an internet bill.
 
 ### Invoices
 
-- **Characteristics**: Documents requesting payment for goods/services provided. Usually contains "Bill To", an Invoice Number, and a Due Date.
+- **Concept**: Any document requesting payment for specific goods or services already provided.
+- **Markers**: "Bill To" / "Invoice Number" / "Due Date" / `发票` / `Factura`.
 - **Naming Format**: `yyyy-mm-dd-[BilledTo]-[VendorName]-[Invoice#]-[Amount].pdf`
 - **Folder**: `Documents/Invoices/`
 
 ### Bills (Utility/Recurring)
 
-- **Characteristics**: Recurring statements for services like electricity, water, internet, or phone. Contains service periods and account numbers.
+- **Concept**: Recurring statements for essential services (power, water, internet, phone).
+- **Markers**: Service periods / Account numbers / `账单` / `Facture`.
 - **Naming Format**: `yyyy-mm-dd-[Provider]-[AccountName]-[Account#].pdf`
 - **Folder**: `Documents/Bills/`
 
 ### Receipts
 
-- **Characteristics**: Proof of payment for a completed transaction. Usually contains an order summary, total paid, and payment method (e.g., "Card Ending In").
+- **Concept**: Proof of payment for a completed transaction, often containing a summary of items purchased.
+- **Markers**: Order summary / Payment method / `凭据` / `Recibo`.
 - **Naming Format**: `yyyy-mm-dd-[PaidBy]-[Store]-[TotalAmount].pdf`
 - **Folder**: `Documents/Receipts/`
 
 ### Travel Documents
 
-- **Characteristics**: Itineraries, flight bookings, boarding passes, hotel reservations.
+- **Concept**: Itineraries, flight bookings, boarding passes, hotel reservations, or any travel-related logistics.
+- **Markers**: Confirmation numbers / Flight details / `行程` / `Billete`.
 - **Naming Format**: `yyyy-mm-dd-[Airline/Hotel]-[Confirmation#].pdf` (if applicable)
 - **Folder**: `Documents/Travel/`
 
 ### Financial/Legal
 
-- **Bank Statements**: Monthly account summaries showing available balances and transactions.
-- **Legal**: Agreements, contracts, privacy policies.
+- **Bank Statements**: Monthly account summaries, available balances, transactions, or investment reports.
+- **Legal**: Agreements, contracts, privacy policies, or official notices.
+- **Markers**: Account summaries / "Confidential" / `银行流水` / `Legal`.
 - **Folder**: `Documents/Financial/` or `Documents/Legal/`
 
 ### Career & Professional
 
-- **Characteristics**: Resumes, Job applications, CVs, and professional summaries.
+- **Concept**: Resumes, job applications, CVs, cover letters, and professional portfolios.
+- **Markers**: Experience / Skills / `简历` / `CV`.
 - **Folder**: `Documents/Career/`
 
 ### General Documents
