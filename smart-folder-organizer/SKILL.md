@@ -11,8 +11,8 @@ This skill provides a structured workflow for tidying up disorganized directorie
 
 1. **Safety First**: NEVER delete any file. Move files intended for deletion to a folder named `to_remove`.
 2. **Strict Scoping**: Operate ONLY within the current directory and its subdirectories. Never move or access files in the parent directory (`..`).
-3. **Preservation**: If a file's category is ambiguous, move it to a `Misc/` folder rather than guessing incorrectly.
-4. **Large Files**: For any file larger than 20MB, skip deep content analysis (such as reading PDF text) to prevent memory issues. Move these unanalyzed large files to a dedicated `Others/LargeFiles/` directory.
+3. **Preservation**: If a file's category is ambiguous, move it to an `Uncategorized/` folder rather than guessing incorrectly.
+4. **Large Files**: For any file larger than 20MB, skip deep content analysis (such as reading PDF text) to prevent memory issues. Move these unanalyzed large files to a dedicated `Uncategorized/LargeFiles/` directory.
 5. **Folder Handling**: Recursively process all files within the current directory and its subdirectories. When moving files, place them in the categorized folders at the root level of the target directory (do not replicate the category structure inside every subfolder). Any empty subdirectories discovered or left behind must be moved to `to_remove/`.
 
 ## Workflow
@@ -54,8 +54,9 @@ For PDF files, read the first few pages to determine the document type and extra
 
 ### 5. Final Cleanup
 
-- Group remaining documents (`.docx`, `.xlsx`, etc.) into `Documents/Uncategorized/` by sub-type if applicable.
-- Move any unhandled files to `Misc/`.
+- Group remaining documents (`.docx`, `.xlsx`, etc.) into `Uncategorized/Documents/` by sub-type if applicable.
+- If a PDF document was analyzed but the category is unknown, move it to `Uncategorized/Unknown/`.
+- Move any other unhandled files to `Uncategorized/`.
 
 ## Resources
 

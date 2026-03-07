@@ -44,7 +44,12 @@ If a document matches characteristics of multiple categories, consider its prima
 ### General Documents
 
 - **Characteristics**: General documents that do not fall into the above categories.
-- **Folder**: `Documents/Uncategorized/`
+- **Folder**: `Uncategorized/Documents/`
+
+### Unknown Documents
+
+- **Characteristics**: Documents that were analyzed by AI (content was read) but did not match any recognized category or pattern.
+- **Folder**: `Uncategorized/Unknown/`
 
 ## General File Types
 
