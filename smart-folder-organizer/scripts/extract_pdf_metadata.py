@@ -1,30 +1,45 @@
 """
 Extract PDF Metadata Script
 ---------------------------
-A helper script that extracts text from a PDF using the docling library. 
-Docling preserves document layout and tables, returning high-quality markdown.
+A helper script that extracts text from a PDF using the pypdf library.
+Uses a sampling strategy (first 3 pages + last page) for faster classification.
 Returns output as a JSON dictionary to stdout.
 """
 
 import sys
 import json
 try:
-    from docling.document_converter import DocumentConverter
+    from pypdf import PdfReader
 except ImportError:
-    print(json.dumps({"error": "docling is not installed. Please install it using 'pip install docling'."}))
+    print(json.dumps({"error": "pypdf is not installed. Please install it using 'pip install pypdf'."}))
     sys.exit(0)
 
 def extract_pdf_metadata(file_path):
     """
-    Reads a PDF and returns the text in markdown format.
-    Uses Docling for structural and layout-aware extraction.
+    Reads a PDF and returns the text from a sample of pages.
+    Sampling: First 3 pages and the Last page.
     """
     try:
-        converter = DocumentConverter()
-        result = converter.convert(file_path)
+        reader = PdfReader(file_path)
+        num_pages = len(reader.pages)
         
-        # Docling exports high quality text, typically in markdown format
-        full_text = result.document.export_to_markdown()
+        pages_to_read = []
+        
+        # Add first 3 pages (if they exist)
+        for i in range(min(3, num_pages)):
+            pages_to_read.append(i)
+            
+        # Add last page (if it's not already included)
+        if num_pages > 3:
+            pages_to_read.append(num_pages - 1)
+            
+        extracted_text = []
+        for page_idx in pages_to_read:
+            text = reader.pages[page_idx].extract_text()
+            if text:
+                extracted_text.append(f"--- Page {page_idx + 1} ---\n{text}")
+        
+        full_text = "\n\n".join(extracted_text)
         
         return {
             "success": True,
