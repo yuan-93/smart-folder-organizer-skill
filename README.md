@@ -4,11 +4,22 @@ Automatically organizes cluttered folders by categorizing files, identifying dup
 
 ## Features
 
-- **Smart Folder Recognition**: Detects well-organized subdirectories (git repos, project roots, app bundles) and moves them to `Others/` instead of breaking them apart.
-- **Duplicate Detection**: Deterministically finds and moves identical files to a `to_remove/` folder.
-- **Categorization**: Automatically sorts files into `Photos/`, `Videos/`, `Installers/`, `Archives/`, etc.
-- **Deep PDF Analysis**: Extracts metadata from PDFs (invoices, bills, receipts) and renames them using a standard format (`yyyy-mm-dd-[Vendor]-[Inv#]-[Amount].pdf`).
-- **Safety First**: Never deletes files; moves candidates for deletion to `to_remove/`.
+- **Smart Folder Recognition**: Detects well-organized subdirectories (git repos, project roots like `package.json` or `Cargo.toml`, and macOS app bundles) and moves them to `Others/` instead of breaking them apart.
+- **Duplicate Detection**: Deterministically finds and moves identical files to a `to_remove/duplicates/` folder using SHA-256 hashing.
+- **Categorization**: Automatically sorts files into structured directories:
+  - **Media**: `Photos/` (with `Screenshots/` subfolder), `Videos/`, and `Audio/`.
+  - **Documents**: `Documents/Writing/`, `Documents/Spreadsheets/`, and `Documents/Presentations/`.
+  - **System**: `Installers/` (`.dmg`, `.pkg`, `.exe`, `.msi`) and `Archives/` (`.zip`, `.rar`, etc.).
+- **Deep PDF Analysis**: Uses modern AI (via `docling`) for universal semantic reasoning to categorize and rename documents:
+  - **Invoices**: `yyyy-mm-dd-[Vendor]-[Inv#]-[Amount].pdf`
+  - **Bills**: `yyyy-mm-dd-[Provider]-[Service]-[Account#].pdf`
+  - **Receipts**: `yyyy-mm-dd-[Store]-[TotalAmount].pdf`
+  - **Travel**: `yyyy-mm-dd-[Transport/Hotel]-[Confirmation#].pdf`
+- **Safety First**:
+  - Never deletes files; moves candidates to `to_remove/`.
+  - Files larger than 20MB are moved to `Needs_Review/LargeFiles/` to ensure performance.
+  - Ambiguous files are moved to `Needs_Review/` instead of guessing.
+- **Multilingual Support**: Extracts vendor names and details in their original script (e.g., Chinese, Spanish) while maintaining standard date formats.
 
 ## Installation
 
@@ -45,9 +56,9 @@ The agent will automatically utilize the smart-folder-organizer skill to complet
 
 ## Roadmap
 
-- [ ] **Git Integration for Safe Rollbacks**: Automatically initialize a local git repository before organizing, allowing users to easily undo changes if they are unhappy with the result.
 - [x] **Smart Folder Recognition**: Detect subfolders that are already well-organized (e.g., project directories, self-contained apps) and move them to an `Others/` directory.
-- [ ] **Detailed Documentation**: Further explain the tool's inner workings, detailing exactly how each file type (especially PDFs) is processed and categorized.
+- [x] **Detailed Documentation**: Comprehensive breakdown of logic in `SKILL.md` and `classification.md`.
+- [ ] **Git Integration for Safe Rollbacks**: Automatically initialize a local git repository before organizing, allowing users to easily undo changes if they are unhappy with the result.
 - [ ] **Test Data Repository**: Create a `data/` folder containing sample files and test data in various languages to thoroughly test and improve multi-language file categorization and PDF text extraction.
 
 ## License
