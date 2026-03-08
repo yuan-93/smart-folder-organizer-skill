@@ -10,28 +10,28 @@ If a document matches characteristics of multiple categories, consider its prima
 
 - **Concept**: Any document requesting payment for specific goods or services already provided.
 - **Markers**: "Bill To" / "Invoice Number" / "Due Date" / `发票` / `Factura`.
-- **Naming Format**: `yyyy-mm-dd-[BilledTo]-[VendorName]-[Invoice#]-[Amount].pdf`
+- **Naming Format**: `yyyy-mm-dd-[Vendor]-[Inv#]-[Amount].pdf`
 - **Folder**: `Documents/Invoices/`
 
 ### Bills (Utility/Recurring)
 
 - **Concept**: Recurring statements for essential services (power, water, internet, phone).
 - **Markers**: Service periods / Account numbers / `账单` / `Facture`.
-- **Naming Format**: `yyyy-mm-dd-[Provider]-[AccountName]-[Account#].pdf`
+- **Naming Format**: `yyyy-mm-dd-[Provider]-[Service]-[Account#].pdf`
 - **Folder**: `Documents/Bills/`
 
 ### Receipts
 
 - **Concept**: Proof of payment for a completed transaction, often containing a summary of items purchased.
 - **Markers**: Order summary / Payment method / `凭据` / `Recibo`.
-- **Naming Format**: `yyyy-mm-dd-[PaidBy]-[Store]-[TotalAmount].pdf`
+- **Naming Format**: `yyyy-mm-dd-[Store]-[TotalAmount].pdf`
 - **Folder**: `Documents/Receipts/`
 
 ### Travel Documents
 
 - **Concept**: Itineraries, flight bookings, boarding passes, hotel reservations, or any travel-related logistics.
 - **Markers**: Confirmation numbers / Flight details / `行程` / `Billete`.
-- **Naming Format**: `yyyy-mm-dd-[Airline/Hotel]-[Confirmation#].pdf` (if applicable)
+- **Naming Format**: `yyyy-mm-dd-[Transport/Hotel]-[Confirmation#].pdf`
 - **Folder**: `Documents/Travel/`
 
 ### Financial/Legal
@@ -68,12 +68,12 @@ If a document matches characteristics of multiple categories, consider its prima
 ### General Documents
 
 - **Characteristics**: General documents that do not fall into the above categories.
-- **Folder**: `Uncategorized/Documents/`
+- **Folder**: `Needs_Review/Documents/`
 
 ### Unknown Documents
 
 - **Characteristics**: Documents that were analyzed by AI (content was read) but did not match any recognized category or pattern.
-- **Folder**: `Uncategorized/Unknown/`
+- **Folder**: `Needs_Review/Unknown/`
 
 ## General File Types
 
@@ -82,6 +82,7 @@ If a document matches characteristics of multiple categories, consider its prima
 - **Photos**: `.jpg`, `.jpeg`, `.png`, `.heic`, `.webp`. Move to `Photos/`.
 - **Screenshots**: Filenames containing "Screenshot" (Windows/iOS) or "Screen Shot" (macOS). Move to `Photos/Screenshots/`.
 - **Videos**: `.mp4`, `.mov`, `.mkv`, `.avi`. Move to `Videos/`.
+- **Audio**: `.mp3`, `.wav`, `.flac`, `.m4a`. Move to `Audio/`.
 
 ### Installers
 
@@ -92,3 +93,10 @@ If a document matches characteristics of multiple categories, consider its prima
 
 - **Extensions**: `.zip`, `.tar.gz`, `.rar`, `.7z`.
 - **Folder**: `Archives/`
+
+### Smart Folders (Others)
+
+- **Concept**: Pre-organized project folders, git repositories, or app bundles.
+- **Markers**: `.git/`, `package.json`, `.app`, etc.
+- **Action**: Move as a whole unit.
+- **Folder**: `Others/`
