@@ -47,6 +47,24 @@ If a document matches characteristics of multiple categories, consider its prima
 - **Markers**: Experience / Skills / `简历` / `CV`.
 - **Folder**: `Documents/Career/`
 
+### Writing
+
+- **Concept**: Word processing documents, essays, and drafts.
+- **Extensions**: `.docx`, `.doc`, `.pages`, `.odt`.
+- **Folder**: `Documents/Writing/`
+
+### Spreadsheets
+
+- **Concept**: Data tables, financial sheets, and calculations.
+- **Extensions**: `.xlsx`, `.xls`, `.numbers`, `.ods`, `.csv`.
+- **Folder**: `Documents/Spreadsheets/`
+
+### Presentations
+
+- **Concept**: Slideshows, presentations, and speaker decks.
+- **Extensions**: `.ppt`, `.pptx`, `.key`, `.odp`.
+- **Folder**: `Documents/Presentations/`
+
 ### General Documents
 
 - **Characteristics**: General documents that do not fall into the above categories.

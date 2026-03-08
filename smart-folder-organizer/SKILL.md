@@ -9,11 +9,11 @@ This skill provides a structured workflow for tidying up disorganized directorie
 
 ## Core Mandates
 
-1. **Safety First**: NEVER delete any file. Move files intended for deletion to a folder named `to_remove`.
+1. **Safety First**: NEVER delete any file. Move files intended for deletion to specific subfolders within `to_remove/` (e.g., `to_remove/duplicates/` or `to_remove/empty_folders/`).
 2. **Strict Scoping**: Operate ONLY within the current directory and its subdirectories. Never move or access files in the parent directory (`..`).
 3. **Preservation**: If a file's category is ambiguous, move it to an `Uncategorized/` folder rather than guessing incorrectly.
 4. **Large Files**: For any file larger than 20MB, skip deep content analysis (such as reading PDF text) to prevent memory issues. Move these unanalyzed large files to a dedicated `Uncategorized/LargeFiles/` directory.
-5. **Folder Handling**: Recursively process all files within the current directory and its subdirectories. When moving files, place them in the categorized folders at the root level of the target directory (do not replicate the category structure inside every subfolder). Any empty subdirectories discovered or left behind must be moved to `to_remove/`.
+5. **Folder Handling**: Recursively process all files within the current directory and its subdirectories. When moving files, place them in the categorized folders at the root level of the target directory (do not replicate the category structure inside every subfolder). Any empty subdirectories discovered or left behind must be moved to `to_remove/empty_folders/`.
 
 ## Workflow
 
@@ -29,7 +29,7 @@ Before processing individual files, run `scripts/detect_smart_folders.py <target
 
 Run the `find_duplicates.py` script to identify identical files.
 
-- **Action**: Move identified duplicates to `to_remove/`.
+- **Action**: Move identified duplicates to `to_remove/duplicates/`.
 - **Logic**: Use file hashes (SHA256) via the script for deterministic results.
 
 ### 3. General Categorization
@@ -55,7 +55,10 @@ For PDF files, read the first few pages to determine the document type and extra
 
 ### 5. Final Cleanup
 
-- Group remaining documents (`.docx`, `.xlsx`, etc.) into `Uncategorized/Documents/` by sub-type if applicable.
+- Group writing documents (`.docx`, `.doc`, `.pages`, `.odt`) into `Documents/Writing/`.
+- Group spreadsheet files (`.xlsx`, `.xls`, `.numbers`, `.ods`, `.csv`) into `Documents/Spreadsheets/`.
+- Group presentation files (`.ppt`, `.pptx`, `.key`, `.odp`) into `Documents/Presentations/`.
+- Group remaining documents into `Uncategorized/Documents/` by sub-type if applicable.
 - If a PDF document was analyzed but the category is unknown, move it to `Uncategorized/Unknown/`.
 - Move any other unhandled files to `Uncategorized/`.
 
